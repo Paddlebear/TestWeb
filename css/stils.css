@@ -3,7 +3,8 @@ body {
     line-height: 1.8;
     color: #f5f6f7;
   }
-  p {font-size: 16px;}
+  h3 {font-size: 36px;}
+  p {font-size: 18px;}
   .margin {margin-bottom: 45px;}
   .bg-1 { 
     background-color: #1abc9c; /* Green */
@@ -21,6 +22,9 @@ body {
     background-color: #2f2f2f; /* Black Gray */
     color: #fff;
   }
+  .bg-5 {
+   background-color: #000000;
+  }
   .container-fluid {
     padding-top: 70px;
     padding-bottom: 70px;
@@ -37,4 +41,5 @@ body {
   .navbar-nav  li a:hover {
     color: #1abc9c !important;
   }
+  
 

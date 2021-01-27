@@ -3,7 +3,10 @@ body {
     line-height: 1.8;
     color: #f5f6f7;
   }
-  h3 {font-size: 36px;}
+  h3 {
+  font-size: 36px;
+  text-shadow: 2px 2px 4px #000000;
+  }
   p {font-size: 18px;}
   .margin {margin-bottom: 45px;}
   .bg-1 { 
@@ -20,7 +23,7 @@ body {
   }
   .bg-4 { 
     background-color: #2f2f2f; /* Black Gray */
-    color: #fff;
+    color: #ffffff;
   }
   .bg-5 {
    background-color: #000000;

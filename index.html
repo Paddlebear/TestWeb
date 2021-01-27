@@ -29,6 +29,7 @@
         <li><a href="#div">&lt;DIV&gt;</a></li>
         <li><a href="#span">&lt;SPAN&gt</a></li>
         <li><a href="#style">&lt;STYLE&gt</a></li>
+        <li><a href="#knifi">CSS knifi</a></li>
       </ul>
     </div>
   </div>
@@ -36,15 +37,15 @@
 
 <!-- First Container -->
 <div class="container-fluid bg-1 text-center" id="div">
-  <img src="images/divbilde.png" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="200" height="200">
+  <img src="images/divbilde.png" class="img-responsive img-circle margin" style="display:inline" alt="Konteineri ar &lt;div&gt;" width="200" height="200">
   <h3 class="margin">&lt;div&gt;</h3>
-  <p>&lt;div&gt; tagu izmanto, lai definētu sadaļu no HTML dokumenta. To izmanto kā konteineri HTML elementiem, kuriem pēc tam piešķir stilu, izmantojot CSS vai JavaScript.</p>
+  <p>&lt;div&gt; tagu izmanto, lai definētu sadaļu no HTML dokumenta. To izmanto kā konteineru HTML elementiem, kuriem pēc tam piešķir stilu, izmantojot CSS vai JavaScript.</p>
 </div>
 
 <!-- Second Container -->
 <div class="container-fluid bg-2 text-center" id="span">
   <h3 class="margin">&lt;span&gt;</h3>
-  <p>&lt;span&gt; tags ir līdzīgs &lt;div&gt tagam - tas izveido konteineri HTML elementiem. Galvenā atšķirība ir tā, ka &lt;span&gt; definē konteineri rindā, bet &lt;div&gt; definē blokveida konteineri.</p>
+  <p>&lt;span&gt; tags ir līdzīgs &lt;div&gt tagam - tas izveido konteineru HTML elementiem. Galvenā atšķirība ir tā, ka &lt;span&gt; definē konteineru rindā, bet &lt;div&gt; definē blokveida konteineru.</p>
 </div>
 
 <!-- Third Container (Grid) -->
@@ -56,16 +57,19 @@
 <div class="container-fluid bg-4 text-center" id="knifi">
     <div class="row">
     <div class="col-sm-4">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <img src="birds1.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+        <p>* + selektors</p>
+        <p>Pēc selektora izmantojot *, ir iespējams izvēlēties visus elementus HTML dokumentā ar doto tagu, un tad var ātri globāli mainīt, piemēram, teksta fontu visā lapā.</p>
+      <img src="images/selektors.png" class="center" alt="Piemērs">
     </div>
-    <div class="col-sm-4"> 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <img src="birds2.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    <div class="col-sm-4">
+      <p>Attēlu izmēru maiņa</p>
+      <p>Ja ir vajadzīgs ātri mainīt attēla izmērus tā, lai tas ietilptu, piemēram, ekrānā vai konteinerā, atstājot attēla proporcijas nemainītas, tad vienam no attēla izmēriem nosaka max-[izmērs]:100%.</p>
+      <img src="images/izmeri.png" class="center" alt="Piemērs">
     </div>
-    <div class="col-sm-4"> 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <img src="birds3.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    <div class="col-sm-4">
+      <p>Lielo un mazo burtu lietojums</p>
+      <p>Lai ātri tekstu pārmainītu uz tikai lieliem vai maziem burtiem, izmanto text-transform atribūtu un attiecīgo formatējumu. Tas ir daudz ātrāk, nekā pārrakstīt visu tekstu.</p>
+      <img src="images/burti.png" class="center" alt="Piemērs">
     </div>
   </div>
 </div>

@@ -45,4 +45,7 @@ body {
     max-width:100%;
     height:auto;
 }
+img.rounded-corners {
+    border-radius: 15px;
+}
 

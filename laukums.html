@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Laukums</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+ <form>
+  <label for="skaitlis">N vērtība:</label><br>
+  <input type="number" id="skaitlis" name=skaitlis"><br><br>
+  <!--<input type="submit" value="Zīmēt"> <input type="reset" value="Dzēst">-->
+</form>
+        <button onclick="myFunction()">Zīmēt</button>
+    <script>
+        function myFunction() {
+            var n = document.getElementById("skaitlis").value;
+            for (let i = 1; i < n+1; i++) {
+                for (let j = 1; j < n+1; j++) {
+                    // it does stuff
+                }
+            }
+        }
+        </script>
+    </body>
+</html>

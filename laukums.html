@@ -24,6 +24,7 @@ and open the template in the editor.
         function myFunction() {
             var n = document.getElementById("skaitlis").value;
             var tabula = document.createElement("div");
+            tabula.setAttribute("id", "tabula");
             for (let i = 0; i < n; i++) {
                 var rinda = document.createElement("div");
                 for (let j = 0; j < n; j++) {
@@ -37,7 +38,7 @@ and open the template in the editor.
             document.body.appendChild(tabula);
         }
         function cleaning() {
-            document.body.removeChild(this.tabula);
+            document.body.removeChild(document.getElementById("tabula"));
         }
         </script>
     </body>

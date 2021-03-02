@@ -21,6 +21,24 @@ and open the template in the editor.
         <!--<button onclick="tests()">tests</button>-->
         <br><br>
     <script>
+        //var n = document.getElementById("skaitlis").value;
+        let skaitli1 = ["01", "02", "03", "04", "05", "06", "07", "08"];
+        let skaitli2 = ["01", "02", "03", "04", "05", "06", "07", "08"];
+        let saraksts = [];
+        function sajukums(){
+            for (let i = 0; i < skaitli1.length; i++) {
+                saraksts.push(skaitli1[i]);
+                saraksts.push(skaitli2[i]);
+            }
+            for (let i = 0; i < saraksts.length; i++) {
+                var rand = Math.floor(Math.random()*saraksts.length);
+                var tmp = saraksts[rand];
+                saraksts[rand] = saraksts[i];
+                saraksts[i] = tmp;
+            }
+            //document.write(saraksts);
+        }
+        sajukums();
         function myFunction() {
             var n = document.getElementById("skaitlis").value;
             var tabula = document.createElement("div");
@@ -29,13 +47,17 @@ and open the template in the editor.
                 var rinda = document.createElement("div");
                 for (let j = 0; j < n; j++) {
                    var button = document.createElement("button");
-                   var text = document.createTextNode(""+(n*i+(j+1)));
+                   var text = document.createTextNode(saraksts[(n*i+j)]);
+                   button.setAttribute("id", ""+(n*i+(j+1)));
                    button.appendChild(text);
                    rinda.appendChild(button);
                 }
                 tabula.appendChild(rinda);
             }
             document.body.appendChild(tabula);
+            //document.getElementById("poga").setAttribute("type", "image");
+            //document.getElementById("poga").setAttribute("src", "images/01.png");
+            //document.getElementById(1).style.background = "images/01.png";
         }
         function cleaning() {
             document.body.removeChild(document.getElementById("tabula"));

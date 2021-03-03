@@ -9,24 +9,25 @@ and open the template in the editor.
         <title>Laukums</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/laukumastils.css">
     </head>
     <body>
  <form>
   <label for="skaitlis">N vērtība:</label><br>
-  <input type="number" id="skaitlis" name=skaitlis"><br><br>
+  <input type="number" id="skaitlis" name="skaitlis"><br><br>
   <!--<input type="submit" value="Zīmēt"> <input type="reset" value="Dzēst">-->
 </form>
-        <button onclick="myFunction()">Zīmēt</button>
-        <button onclick="cleaning()">Dzēst</button>
+        <button style = "width:50px;height:20px" onclick="myFunction()">Zīmēt</button>
+        <button style = "width:50px;height:20px" onclick="cleaning()">Dzēst</button>
         <!--<button onclick="tests()">tests</button>-->
         <br><br>
     <script>
         //var n = document.getElementById("skaitlis").value;
-        let skaitli1 = ["01", "02", "03", "04", "05", "06", "07", "08"];
-        let skaitli2 = ["01", "02", "03", "04", "05", "06", "07", "08"];
+        let skaitli1 = ["url('images/01.png')", "url('images/02.png')", "url('images/03.png')", "url('images/04.png')", "url('images/05.png')", "url('images/06.png')", "url('images/07.png')", "url('images/08.png')", "url('images/09.png')"];
+        let skaitli2 = ["01", "02", "03", "04", "05", "06", "07", "08", "09"];
         let saraksts = [];
-        function sajukums(){
-            for (let i = 0; i < skaitli1.length; i++) {
+        function sajukums(n){
+            for (let i = 0; i < (n*n)/2; i++) {
                 saraksts.push(skaitli1[i]);
                 saraksts.push(skaitli2[i]);
             }
@@ -38,18 +39,28 @@ and open the template in the editor.
             }
             //document.write(saraksts);
         }
-        sajukums();
+        //sajukums();
         function myFunction() {
             var n = document.getElementById("skaitlis").value;
+            sajukums(n);
             var tabula = document.createElement("div");
             tabula.setAttribute("id", "tabula");
             for (let i = 0; i < n; i++) {
                 var rinda = document.createElement("div");
+                rinda.setAttribute("id", "rinda");
                 for (let j = 0; j < n; j++) {
                    var button = document.createElement("button");
-                   var text = document.createTextNode(saraksts[(n*i+j)]);
+                   //button.innerHTML = "  ";
+                   if (saraksts[(n*i+j)].length > 10) {
+                       button.style.backgroundImage = saraksts[(n*i+j)];
+                   }
+                   else {
+                      button.innerHTML = saraksts[(n*i+j)]; 
+                   }
+                   //button.innerHTML = saraksts[(n*i+j)].length;
+                   //var text = document.createTextNode(saraksts[(n*i+j)]);
                    button.setAttribute("id", ""+(n*i+(j+1)));
-                   button.appendChild(text);
+                   //button.appendChild(text);
                    rinda.appendChild(button);
                 }
                 tabula.appendChild(rinda);
@@ -57,7 +68,7 @@ and open the template in the editor.
             document.body.appendChild(tabula);
             //document.getElementById("poga").setAttribute("type", "image");
             //document.getElementById("poga").setAttribute("src", "images/01.png");
-            //document.getElementById(1).style.background = "images/01.png";
+            //document.getElementById("1").style.backgroundImage = "url('images/01.png')";
         }
         function cleaning() {
             document.body.removeChild(document.getElementById("tabula"));

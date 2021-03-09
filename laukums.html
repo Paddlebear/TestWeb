@@ -78,11 +78,11 @@ and open the template in the editor.
         function maina(a) {
            if (saraksts[Number.parseInt(a.id)-1].length > 10) {
                 document.getElementById(a.id).style.backgroundImage = saraksts[Number.parseInt(a.id)-1];
-                setTimeout(function(){document.getElementById(a.id).style.backgroundImage = "";}, 1500)
+                setTimeout(function(){document.getElementById(a.id).style.backgroundImage = "";}, 2000)
            }
            else {
            document.getElementById(a.id).innerHTML = saraksts[Number.parseInt(a.id)-1];
-           setTimeout(function(){document.getElementById(a.id).innerHTML = "";}, 1500)
+           setTimeout(function(){document.getElementById(a.id).innerHTML = "";}, 2000)
            }
            
         }

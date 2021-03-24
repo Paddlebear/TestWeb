@@ -15,8 +15,8 @@ and open the template in the editor.
  <form>
   <label for="skaitlis">Izmērs (temats)</label><br>
   <select id="skaitlis" name="skaitlis">
-      <option value = "4">4x4 (Krāsu hex kodi)</option>
-      <option value = "6">6x6 (Dzīvnieku zin. nos.)</option>
+      <option value = "4">4x4 (Krāsu hex kodi, 1.5min)</option>
+      <option value = "6">6x6 (Dzīvnieku latīn. nos., 3min)</option>
       </select><br>
 </form>
         <button style = "width:50px;height:20px" onclick="myFunction()">Zīmēt</button>
@@ -32,7 +32,7 @@ and open the template in the editor.
         var sakums = 1;
         var t = 0;
         var uzvara = 0;
-        var pirmaisid, otraisid, n, timecount;
+        var pirmaisid, otraisid, n, timecount, tmax, sek;
         function sajukums(n){
             for (let i = 0; i < (n*n)/2; i++) {
                 if (n == 4) {
@@ -53,19 +53,34 @@ and open the template in the editor.
         }
         function timer() {
             t++;
+            sek = t%60;
+            if (sek < 10) {
+                laiks.innerHTML = "Laiks - " +Math.floor(t/60) +':0' +sek;
+            } else {
+                laiks.innerHTML = "Laiks - " +Math.floor(t/60) +':' +sek;
+            }
+            if (t == tmax) {
+                clearInterval(timecount);
+                laiks.innerHTML = "Laiks beidzies.";
+                for (let i = 0; i < n*n; i++) {
+                document.getElementById(i+1).style.pointerEvents = "none";  
+                }
+            }
         }
         function stoptimer() {
-            clearInterval(timecount)
+            clearInterval(timecount);
         }
         function myFunction() {
             n = document.getElementById("skaitlis").value;
             if (n == 4) {
                 masivs1 = skaitli1;
                 masivs2 = skaitli2;
+                tmax = 90;
             }
             if (n == 6) {
                 masivs1 = animals1;
                 masivs2 = animals2;
+                tmax = 180;
             }
             sajukums(n);
             var tabula = document.createElement("div");
@@ -82,7 +97,7 @@ and open the template in the editor.
                       button.setAttribute("value", "teksts"); 
                    }
                    button.setAttribute("id", ""+(n*i+(j+1)));
-                   button.setAttribute("onclick", "maina(this)")
+                   button.setAttribute("onclick", "maina(this)");
                    rinda.appendChild(button);
                 }
                 tabula.appendChild(rinda);
@@ -91,6 +106,7 @@ and open the template in the editor.
         var laiks = document.createElement("p");
         laiks.setAttribute("id", "laiks");
         document.body.appendChild(laiks);
+        laiks.innerHTML = "Laiks - 0:00";
         timecount = setInterval(timer,1000);
         }
         function cleaning() {
@@ -127,11 +143,11 @@ and open the template in the editor.
                }
                if (document.getElementById(pirmaisid).value === document.getElementById(otraisid).value) {
                     if (document.getElementById(pirmaisid).value === "bilde") {
-                    setTimeout(function(){document.getElementById(pirmaisid).style.backgroundImage = "";}, 1200);
-                    setTimeout(function(){document.getElementById(otraisid).style.backgroundImage = "";}, 1200);  
+                    setTimeout(function(){document.getElementById(pirmaisid).style.backgroundImage = "";}, 1000);
+                    setTimeout(function(){document.getElementById(otraisid).style.backgroundImage = "";}, 1000);  
                   } else {
-                  setTimeout(function(){document.getElementById(pirmaisid).innerHTML = "";}, 1200);
-                  setTimeout(function(){document.getElementById(otraisid).innerHTML = "";}, 1200);
+                  setTimeout(function(){document.getElementById(pirmaisid).innerHTML = "";}, 1000);
+                  setTimeout(function(){document.getElementById(otraisid).innerHTML = "";}, 1000);
                } 
                } else {
                    if (document.getElementById(pirmaisid).value === "bilde") {
@@ -141,8 +157,8 @@ and open the template in the editor.
                            document.getElementById(otraisid).style.pointerEvents = "none";
                        }
                        else {
-                          setTimeout(function(){document.getElementById(pirmaisid).style.backgroundImage = "";}, 1200);
-                          setTimeout(function(){document.getElementById(otraisid).innerHTML = "";}, 1200);
+                          setTimeout(function(){document.getElementById(pirmaisid).style.backgroundImage = "";}, 1000);
+                          setTimeout(function(){document.getElementById(otraisid).innerHTML = "";}, 1000);
                        }
                    } else {
                       if (masivs2.indexOf(saraksts[pirmaisid-1]) === masivs1.indexOf(saraksts[otraisid-1])) {
@@ -151,14 +167,19 @@ and open the template in the editor.
                            document.getElementById(otraisid).style.pointerEvents = "none";
                        }
                        else {
-                          setTimeout(function(){document.getElementById(otraisid).style.backgroundImage = "";}, 1200);
-                          setTimeout(function(){document.getElementById(pirmaisid).innerHTML = "";}, 1200);
+                          setTimeout(function(){document.getElementById(otraisid).style.backgroundImage = "";}, 1000);
+                          setTimeout(function(){document.getElementById(pirmaisid).innerHTML = "";}, 1000);
                        } 
                    }
                    if (uzvara === n*n/2) {
                        stoptimer();
                        console.log(t);
-                       laiks.innerHTML = "Uzvara! Laiks - " +Math.floor(t/60) +':' +(t%60);
+                       sek = t%60;
+                       if (sek < 10) {
+                       laiks.innerHTML = "Uzvara! Laiks - " +Math.floor(t/60) +':0' +sek;
+                       } else {
+                       laiks.innerHTML = "Uzvara! Laiks - " +Math.floor(t/60) +':' +sek;
+                       }
                    }
                }
                sakums = 1;

@@ -3,6 +3,7 @@ button {
     height: 80px;
     display: table-cell;
     vertical-align: middle;
+    font-size: 11px;
 }
 #tabula {
     display: table;

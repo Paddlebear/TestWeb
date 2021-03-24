@@ -13,11 +13,11 @@ and open the template in the editor.
     </head>
     <body>
  <form>
-  <label for="skaitlis">N vērtība:</label><br>
+  <label for="skaitlis">Izmērs (temats)</label><br>
   <select id="skaitlis" name="skaitlis">
       <option value = "4">4x4 (Krāsu hex kodi)</option>
       <option value = "6">6x6 (Dzīvnieku zin. nos.)</option>
-      </select><br><br>
+      </select><br>
 </form>
         <button style = "width:50px;height:20px" onclick="myFunction()">Zīmēt</button>
         <button style = "width:50px;height:20px" onclick="cleaning()">Dzēst</button>
@@ -25,15 +25,24 @@ and open the template in the editor.
     <script>
         let skaitli1 = ["url('images/01.png')", "url('images/02.png')", "url('images/03.png')", "url('images/04.png')", "url('images/05.png')", "url('images/06.png')", "url('images/07.png')", "url('images/08.png')", "url('images/09.png')"];
         let skaitli2 = ["#ff0000", "#ffa000", "#ffff00", "#00ff00", "#0000ff", "#a000ff", "#ffa0ff", "#a0a0a0", "#ffffff"];
+        let animals1 = ["url('images/a1.png')", "url('images/a2.png')", "url('images/a3.png')", "url('images/a4.png')", "url('images/a5.png')", "url('images/a6.png')", "url('images/a7.png')", "url('images/a8.png')", "url('images/a9.png')", "url('images/a10.png')", "url('images/a11.png')", "url('images/a12.png')", "url('images/a13.png')", "url('images/a14.png')", "url('images/a15.png')", "url('images/a16.png')", "url('images/a17.png')", "url('images/a18.png')"];
+        let animals2 = ["Felis", "Canis", "Cygnus", "Falco", "Vulpes", "Mus", "Ursus", "Ciconia", "Anas", "Apis", "Homo", "Salmo", "Danaus", "Crocodilia", "Natrix", "Capra", "Equus", "Coronaviridae"];
         let saraksts = [];
+        let masivs1, masivs2;
         var sakums = 1;
         var t = 0;
         var uzvara = 0;
         var pirmaisid, otraisid, n, timecount;
         function sajukums(n){
             for (let i = 0; i < (n*n)/2; i++) {
-                saraksts.push(skaitli1[i]);
-                saraksts.push(skaitli2[i]);
+                if (n == 4) {
+                    saraksts.push(skaitli1[i]);
+                    saraksts.push(skaitli2[i]);
+                }
+                if (n == 6) {
+                    saraksts.push(animals1[i]);
+                    saraksts.push(animals2[i]);
+                }
             }
             for (let i = 0; i < saraksts.length; i++) {
                 var rand = Math.floor(Math.random()*saraksts.length);
@@ -50,6 +59,14 @@ and open the template in the editor.
         }
         function myFunction() {
             n = document.getElementById("skaitlis").value;
+            if (n == 4) {
+                masivs1 = skaitli1;
+                masivs2 = skaitli2;
+            }
+            if (n == 6) {
+                masivs1 = animals1;
+                masivs2 = animals2;
+            }
             sajukums(n);
             var tabula = document.createElement("div");
             tabula.setAttribute("id", "tabula");
@@ -58,7 +75,7 @@ and open the template in the editor.
                 rinda.setAttribute("id", "rinda");
                 for (let j = 0; j < n; j++) {
                    var button = document.createElement("button");
-                   if (saraksts[(n*i+j)].length === 20) {
+                   if (saraksts[(n*i+j)].length >= 20) {
                        button.setAttribute("value", "bilde");
                    }
                    else {
@@ -110,32 +127,32 @@ and open the template in the editor.
                }
                if (document.getElementById(pirmaisid).value === document.getElementById(otraisid).value) {
                     if (document.getElementById(pirmaisid).value === "bilde") {
-                    setTimeout(function(){document.getElementById(pirmaisid).style.backgroundImage = "";}, 1500);
-                    setTimeout(function(){document.getElementById(otraisid).style.backgroundImage = "";}, 1500);  
+                    setTimeout(function(){document.getElementById(pirmaisid).style.backgroundImage = "";}, 1200);
+                    setTimeout(function(){document.getElementById(otraisid).style.backgroundImage = "";}, 1200);  
                   } else {
-                  setTimeout(function(){document.getElementById(pirmaisid).innerHTML = "";}, 1500);
-                  setTimeout(function(){document.getElementById(otraisid).innerHTML = "";}, 1500);
+                  setTimeout(function(){document.getElementById(pirmaisid).innerHTML = "";}, 1200);
+                  setTimeout(function(){document.getElementById(otraisid).innerHTML = "";}, 1200);
                } 
                } else {
                    if (document.getElementById(pirmaisid).value === "bilde") {
-                       if (skaitli1.indexOf(saraksts[pirmaisid-1]) === skaitli2.indexOf(saraksts[otraisid-1])) {
+                       if (masivs1.indexOf(saraksts[pirmaisid-1]) === masivs2.indexOf(saraksts[otraisid-1])) {
                            uzvara++;
                            document.getElementById(pirmaisid).style.pointerEvents = "none";
                            document.getElementById(otraisid).style.pointerEvents = "none";
                        }
                        else {
-                          setTimeout(function(){document.getElementById(pirmaisid).style.backgroundImage = "";}, 1500);
-                          setTimeout(function(){document.getElementById(otraisid).innerHTML = "";}, 1500);
+                          setTimeout(function(){document.getElementById(pirmaisid).style.backgroundImage = "";}, 1200);
+                          setTimeout(function(){document.getElementById(otraisid).innerHTML = "";}, 1200);
                        }
                    } else {
-                      if (skaitli2.indexOf(saraksts[pirmaisid-1]) === skaitli1.indexOf(saraksts[otraisid-1])) {
+                      if (masivs2.indexOf(saraksts[pirmaisid-1]) === masivs1.indexOf(saraksts[otraisid-1])) {
                            uzvara++;
                            document.getElementById(pirmaisid).style.pointerEvents = "none";
                            document.getElementById(otraisid).style.pointerEvents = "none";
                        }
                        else {
-                          setTimeout(function(){document.getElementById(otraisid).style.backgroundImage = "";}, 1500);
-                          setTimeout(function(){document.getElementById(pirmaisid).innerHTML = "";}, 1500);
+                          setTimeout(function(){document.getElementById(otraisid).style.backgroundImage = "";}, 1200);
+                          setTimeout(function(){document.getElementById(pirmaisid).innerHTML = "";}, 1200);
                        } 
                    }
                    if (uzvara === n*n/2) {

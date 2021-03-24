@@ -20,7 +20,7 @@ and open the template in the editor.
       </select><br>
 </form>
         <button style = "width:50px;height:20px" onclick="myFunction()">Zīmēt</button>
-        <button style = "width:50px;height:20px" onclick="cleaning()">Dzēst</button>
+        <button style = "width:50px;height:20px" onclick="supercleaning()">Dzēst</button>
         <br><br>
     <script>
         let skaitli1 = ["url('images/01.png')", "url('images/02.png')", "url('images/03.png')", "url('images/04.png')", "url('images/05.png')", "url('images/06.png')", "url('images/07.png')", "url('images/08.png')", "url('images/09.png')"];
@@ -125,6 +125,10 @@ and open the template in the editor.
             sakums = 1;
             t = 0;
             uzvara = 0;
+        }
+        function supercleaning() {
+            cleaning();
+            firsttime = 1;
         }
         function mainabilde(x) {
             document.getElementById(x).style.backgroundImage = saraksts[x-1];

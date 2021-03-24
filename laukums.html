@@ -32,7 +32,9 @@ and open the template in the editor.
         var sakums = 1;
         var t = 0;
         var uzvara = 0;
-        var pirmaisid, otraisid, n, timecount, tmax, sek;
+        var n, timecount, tmax, sek, dzesana;
+        var pirmaisid = 1;
+        var otraisid = 1;
         function sajukums(n){
             for (let i = 0; i < (n*n)/2; i++) {
                 if (n == 4) {
@@ -107,7 +109,7 @@ and open the template in the editor.
         laiks.setAttribute("id", "laiks");
         document.body.appendChild(laiks);
         laiks.innerHTML = "Laiks - 0:00";
-        timecount = setInterval(timer,1000);
+        timecount = setInterval(timer, 1000);
         }
         function cleaning() {
             document.body.removeChild(document.getElementById("tabula"));
@@ -124,8 +126,18 @@ and open the template in the editor.
         function mainateksts(x) {
             document.getElementById(x).innerHTML = saraksts[x-1];
         }
+        function dzest(x, y) {
+            document.getElementById(x).style.backgroundImage = "";
+            document.getElementById(y).style.backgroundImage = "";
+            document.getElementById(x).innerHTML = "";
+            document.getElementById(y).innerHTML = "";
+        }
         function maina(a) {
            if (sakums == 1) {
+               clearTimeout(dzesana);
+               if ((masivs1.indexOf(saraksts[pirmaisid-1]) !== masivs2.indexOf(saraksts[otraisid-1])) || (masivs2.indexOf(saraksts[pirmaisid-1]) !== masivs1.indexOf(saraksts[otraisid-1]))) {
+                    dzest(pirmaisid, otraisid);
+               }
                pirmaisid = Number.parseInt(a.id);
                if (document.getElementById(pirmaisid).value === "bilde") {
                    mainabilde(pirmaisid);
@@ -142,13 +154,7 @@ and open the template in the editor.
                   mainateksts(otraisid); 
                }
                if (document.getElementById(pirmaisid).value === document.getElementById(otraisid).value) {
-                    if (document.getElementById(pirmaisid).value === "bilde") {
-                    setTimeout(function(){document.getElementById(pirmaisid).style.backgroundImage = "";}, 1000);
-                    setTimeout(function(){document.getElementById(otraisid).style.backgroundImage = "";}, 1000);  
-                  } else {
-                  setTimeout(function(){document.getElementById(pirmaisid).innerHTML = "";}, 1000);
-                  setTimeout(function(){document.getElementById(otraisid).innerHTML = "";}, 1000);
-               } 
+                    dzesana = setTimeout(function(){dzest(pirmaisid, otraisid);}, 1500);
                } else {
                    if (document.getElementById(pirmaisid).value === "bilde") {
                        if (masivs1.indexOf(saraksts[pirmaisid-1]) === masivs2.indexOf(saraksts[otraisid-1])) {
@@ -157,8 +163,7 @@ and open the template in the editor.
                            document.getElementById(otraisid).style.pointerEvents = "none";
                        }
                        else {
-                          setTimeout(function(){document.getElementById(pirmaisid).style.backgroundImage = "";}, 1000);
-                          setTimeout(function(){document.getElementById(otraisid).innerHTML = "";}, 1000);
+                          dzesana = setTimeout(function(){dzest(pirmaisid, otraisid);}, 1500);
                        }
                    } else {
                       if (masivs2.indexOf(saraksts[pirmaisid-1]) === masivs1.indexOf(saraksts[otraisid-1])) {
@@ -167,8 +172,7 @@ and open the template in the editor.
                            document.getElementById(otraisid).style.pointerEvents = "none";
                        }
                        else {
-                          setTimeout(function(){document.getElementById(otraisid).style.backgroundImage = "";}, 1000);
-                          setTimeout(function(){document.getElementById(pirmaisid).innerHTML = "";}, 1000);
+                         dzesana = setTimeout(function(){dzest(pirmaisid, otraisid);}, 1500);
                        } 
                    }
                    if (uzvara === n*n/2) {

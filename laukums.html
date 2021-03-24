@@ -35,7 +35,6 @@ and open the template in the editor.
         var n, timecount, tmax, sek, dzesana;
         var pirmaisid = 1;
         var otraisid = 1;
-        var firsttime = 1;
         function sajukums(n){
             for (let i = 0; i < (n*n)/2; i++) {
                 if (n == 4) {
@@ -74,11 +73,7 @@ and open the template in the editor.
             clearInterval(timecount);
         }
         function myFunction() {
-            if (firsttime == 0) {
-                cleaning();
-            } else {
-                firsttime = 0;
-            }
+            supercleaning();
             n = document.getElementById("skaitlis").value;
             if (n == 4) {
                 masivs1 = skaitli1;
@@ -127,8 +122,9 @@ and open the template in the editor.
             uzvara = 0;
         }
         function supercleaning() {
-            cleaning();
-            firsttime = 1;
+            if (document.getElementById("tabula")!= null) {
+                cleaning();
+            }
         }
         function mainabilde(x) {
             document.getElementById(x).style.backgroundImage = saraksts[x-1];
